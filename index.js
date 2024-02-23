@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 //CORS POLICY
 // const allowedOrigins = ['http://localhost:5173', 'https://codivesky-group-1.vercel.app',"/*"];
 app.use(cors({
-  origin: '*'
+  origin: 'http://localhost:5173'
 }));
 
 // Default route
