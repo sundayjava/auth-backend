@@ -3,6 +3,9 @@ require("dotenv").config();
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const AuthRoute = require("./route/AuthRoute");
+const cors = require("cors")
+const morgan = require("morgan")
+const helmet = require("helmet")
 
 const db = require("./config/dbconfig");
 
@@ -13,6 +16,12 @@ app.use(express.json());
 app.use(cookieParser()); //Helps you know a user's preference on your website
 app.use(logger("dev")); //it helps to track user activities
 app.use(express.urlencoded({ extended: false }));
+
+//CORS POLICY
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(morgan("common"));
+app.use(cors());
 
 // Default route
 app.get("/", (req, res) => {
