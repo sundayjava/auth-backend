@@ -4,8 +4,6 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const AuthRoute = require("./route/AuthRoute");
 const cors = require("cors")
-const morgan = require("morgan")
-const helmet = require("helmet")
 
 const db = require("./config/dbconfig");
 
@@ -18,10 +16,10 @@ app.use(logger("dev")); //it helps to track user activities
 app.use(express.urlencoded({ extended: false }));
 
 //CORS POLICY
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-app.use(morgan("common"));
-app.use(cors());
+// const allowedOrigins = ['http://localhost:5173', 'https://codivesky-group-1.vercel.app',"/*"];
+app.use(cors({
+  origin: '*'
+}));
 
 // Default route
 app.get("/", (req, res) => {
